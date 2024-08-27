@@ -10,7 +10,7 @@ Você pode verificar a documentação do [Bootstrap](https://getbootstrap.com/).
 Certifique-se de ter as seguintes ferramentas instaladas:
 
 * Xampp 3.3.0 ou superior;
-* Composer - PHP Dependency Manager;
+* Composer 2.7.7 - PHP Dependency Manager ou superior;
 * Extensão phpcs e Intelephense no VSCode.
 
 ## Visualização
