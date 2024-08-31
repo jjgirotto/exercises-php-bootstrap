@@ -6,21 +6,16 @@
     <title>Resposta</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   </head>
-  <body class="ms-3">
-    <h2 class="mt-2">Resposta do exercício 1</h2>
+  <body class="ms-5">
+    <h2 class="mt-2">Resposta do exercício 8</h2>
     <?php
         if ($_SERVER["REQUEST_METHOD"] == 'POST') {
             try {
-                $menor_valor = PHP_INT_MAX;
-                $pos_menor_valor = 0;
-                for ($i=1; $i <= 7; $i++) { 
-                  $valor = $_POST["valor$i"];
-                  if ($valor < $menor_valor) {
-                    $menor_valor = $valor;
-                    $pos_menor_valor = $i;
-                  }
-                }
-                echo "Menor valor = $menor_valor, posição = $pos_menor_valor";
+                $valor = (int) $_POST['valor'];
+                do {
+                  echo "<div class='mb-1'>$valor</div>";
+                  $valor -= 1;
+                } while ($valor >= 1);
             } catch (Exception $e) {
                 echo "Erro! ".$e->getMessage();
             }
