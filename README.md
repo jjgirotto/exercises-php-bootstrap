@@ -1,8 +1,9 @@
 ## Exercícios da disciplina de Eletiva I - Linguagem de Programação IV
 
 * Lista 1 - 5 tipos de formulários utilizando HTML e Bootstrap (PDF com formulários solicitados dentro da pasta Lista1);
-* Lista 2 - 20 exercícios utilizando HTML, Bootstrap e PHP. Os arquivos possuem o nome "ex1.php e ex1resp.php" representando a página php em que os dados serão coletados e a página de resposta, respectivamente. Os exercícios incluem adição, multiplicação, divisão, conversões e cálculos diversos e estão descritos no README.md na pasta Lista2.
-* Lista 3 - 10 exercícios englobando as estruturas condicionais `if-else`, `switch-case` e as estruturas de repetição `for`, `do-while` e `while` (descritos no README.md na pasta Lista3).
+* Lista 2 - 20 exercícios utilizando HTML, Bootstrap e PHP. Os arquivos possuem o nome "ex1.php e ex1resp.php" representando a página php em que os dados serão coletados e a página de resposta, respectivamente. Os exercícios incluem adição, multiplicação, divisão, conversões e cálculos diversos e estão descritos no README.md na pasta Lista2;
+* Lista 3 - 10 exercícios englobando as estruturas condicionais `if-else`, `switch-case` e as estruturas de repetição `for`, `do-while` e `while` (descritos no README.md na pasta Lista3);
+* Lista 4 - 7 exercícios englobando funções próprias da linguagem PHP e criação de funções personalizadas (enunciados no README.md na pasta Lista4).
 
 Você pode verificar a documentação do [Bootstrap](https://getbootstrap.com/).
 
