@@ -11,15 +11,21 @@
     <form action="" method="POST">
         <div class="row mt-3">
             <div class="col-3">
+                <label for="codigos" class="form-label">Digite os códigos: </label>
+                <?php for ($i=1; $i <= 5; $i++): ?>
+                  <input type="text" class="form-control mb-2" name="codigos[]" id="codigos" placeholder="Código <?= $i ?>">
+                <?php endfor; ?>
+            </div>
+            <div class="col-3">
                 <label for="nomes" class="form-label">Digite os nomes: </label>
                 <?php for ($i=1; $i <= 5; $i++): ?>
                   <input type="text" class="form-control mb-2" name="nomes[]" id="nomes" placeholder="Nome <?= $i ?>">
                 <?php endfor; ?>
             </div>
             <div class="col-3">
-                <label for="telefones" class="form-label">Digite os telefones: </label>
+                <label for="precos" class="form-label">Digite os preços: </label>
                 <?php for ($i=1; $i <= 5; $i++): ?>
-                  <input type="text" class="form-control mb-2" name="telefones[]" id="telefones" placeholder="Telefone <?= $i ?>">
+                  <input type="number" class="form-control mb-2" name="precos[]" id="precos" placeholder="Preço <?= $i ?>">
                 <?php endfor; ?>
             </div>
         </div>
@@ -34,16 +40,26 @@
       if ($_SERVER["REQUEST_METHOD"] == 'POST') {
         try {
           $nomes = $_POST['nomes'];
-          $telefones = $_POST['telefones'];
-          $contatos = [];
+          $codigos = $_POST['codigos'];
+          $precos = $_POST['precos'];
           for ($i=0; $i < 5; $i++) {
-            if (!in_array($nomes[$i], $contatos) && !in_array($telefones[$i], $contatos))  
-              $contatos[$nomes[$i]] = $telefones[$i];
+            $valores[$nomes[$i]] = $precos[$i];  
+            $produtos[$codigos[$i]] = [
+              'nome' => $nomes[$i],
+              'preco' => $precos[$i]
+            ];
           }
-          ksort($contatos);
+          for ($i=0; $i < 5; $i++) {
+            if ($precos[$i] > 100) {
+              $precos[$i] *= 0.9;
+              echo "<p>$precos[$i]</p>";
+            }
+          }
+          ksort($valores);
           echo "<p>Resposta: </p>";
-          foreach ($contatos as $chave => $valor) {
-            echo "<p>$chave - $valor</p>";
+          foreach ($produtos as $chave => $valor) {
+            foreach($valores as $key => $value)
+              echo "<p>$chave - $key - $value</p>";
           }
         } catch (Exception $e) {
                 echo "Erro! ".$e->getMessage();

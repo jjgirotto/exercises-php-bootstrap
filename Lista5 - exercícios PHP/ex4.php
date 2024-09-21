@@ -17,9 +17,9 @@
                 <?php endfor; ?>
             </div>
             <div class="col-3">
-                <label for="telefones" class="form-label">Digite os telefones: </label>
+                <label for="precos" class="form-label">Digite os preços: </label>
                 <?php for ($i=1; $i <= 5; $i++): ?>
-                  <input type="text" class="form-control mb-2" name="telefones[]" id="telefones" placeholder="Telefone <?= $i ?>">
+                  <input type="text" class="form-control mb-2" name="precos[]" id="precos" step="0.01" placeholder="Preço <?= $i ?>">
                 <?php endfor; ?>
             </div>
         </div>
@@ -34,16 +34,14 @@
       if ($_SERVER["REQUEST_METHOD"] == 'POST') {
         try {
           $nomes = $_POST['nomes'];
-          $telefones = $_POST['telefones'];
-          $contatos = [];
+          $precos = $_POST['precos'];
           for ($i=0; $i < 5; $i++) {
-            if (!in_array($nomes[$i], $contatos) && !in_array($telefones[$i], $contatos))  
-              $contatos[$nomes[$i]] = $telefones[$i];
+            $produtos[$nomes[$i]] = ($precos[$i] * 1.15);
           }
-          ksort($contatos);
+          asort($produtos);
           echo "<p>Resposta: </p>";
-          foreach ($contatos as $chave => $valor) {
-            echo "<p>$chave - $valor</p>";
+          foreach ($produtos as $chave => $valor) {
+            echo "<p>$chave - " . number_format($valor, 2) . "</p>";
           }
         } catch (Exception $e) {
                 echo "Erro! ".$e->getMessage();
