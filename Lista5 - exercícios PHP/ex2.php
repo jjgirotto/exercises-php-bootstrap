@@ -26,16 +26,16 @@
       <?php for ($i=1; $i <= 5; $i++): ?>
         <div class="row mt-2">
             <div class="col">
-                  <input type="text" class="form-control mb-2" name="nomes[]" id="nomes" step="0.01" placeholder="Nome <?= $i ?>">
+                  <input type="text" class="form-control mb-2" name="nomes[]" id="nomes" placeholder="Nome <?= $i ?>">
             </div>
             <div class="col">
-                  <input type="text" class="form-control mb-2" name="notas1[]" id="notas1" step="0.01">
+                  <input type="number" class="form-control mb-2" name="notas1[]" id="notas1" step="0.01">
             </div>
             <div class="col">
-                  <input type="text" class="form-control mb-2" name="notas2[]" id="notas2" step="0.01" placeholder="Nota <?= $i ?>">
+                  <input type="number" class="form-control mb-2" name="notas2[]" id="notas2" step="0.01"">
             </div>
             <div class="col">
-                  <input type="text" class="form-control mb-2" name="notas3[]" id="notas3" step="0.01" placeholder="Nota <?= $i ?>">
+                  <input type="number" class="form-control mb-2" name="notas3[]" id="notas3" step="0.01"">
             </div>
         </div>
       <?php endfor; ?>

@@ -13,7 +13,7 @@
             <div class="col-3">
                 <label for="codigos" class="form-label">Digite os códigos: </label>
                 <?php for ($i=1; $i <= 5; $i++): ?>
-                  <input type="text" class="form-control mb-2" name="codigos[]" id="codigos" placeholder="Código <?= $i ?>">
+                  <input type="number" class="form-control mb-2" name="codigos[]" id="codigos" placeholder="Código <?= $i ?>">
                 <?php endfor; ?>
             </div>
             <div class="col-3">
@@ -25,7 +25,7 @@
             <div class="col-3">
                 <label for="precos" class="form-label">Digite os preços: </label>
                 <?php for ($i=1; $i <= 5; $i++): ?>
-                  <input type="number" class="form-control mb-2" name="precos[]" id="precos" placeholder="Preço <?= $i ?>">
+                  <input type="number" class="form-control mb-2" name="precos[]" id="precos" step="0.1" placeholder="Preço <?= $i ?>">
                 <?php endfor; ?>
             </div>
         </div>
@@ -43,23 +43,22 @@
           $codigos = $_POST['codigos'];
           $precos = $_POST['precos'];
           for ($i=0; $i < 5; $i++) {
-            $valores[$nomes[$i]] = $precos[$i];  
-            $produtos[$codigos[$i]] = [
-              'nome' => $nomes[$i],
-              'preco' => $precos[$i]
-            ];
-          }
-          for ($i=0; $i < 5; $i++) {
             if ($precos[$i] > 100) {
               $precos[$i] *= 0.9;
-              echo "<p>$precos[$i]</p>";
             }
+          }
+          for ($i=0; $i < 5; $i++) {
+            $valores[$nomes[$i]] = $precos[$i];  
+            $produtos[$codigos[$i]] = [
+              "$nomes[$i]" => $precos[$i]
+            ];
           }
           ksort($valores);
           echo "<p>Resposta: </p>";
           foreach ($produtos as $chave => $valor) {
-            foreach($valores as $key => $value)
-              echo "<p>$chave - $key - $value</p>";
+            foreach ($valor as $nome => $preco) {
+              echo "<p>Código: $chave - Nome: $nome - Preço: R$" . number_format($preco, 2) . "</p>";
+            }
           }
         } catch (Exception $e) {
                 echo "Erro! ".$e->getMessage();

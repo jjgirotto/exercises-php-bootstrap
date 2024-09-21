@@ -11,15 +11,15 @@
     <form action="" method="POST">
         <div class="row mt-3">
             <div class="col-3">
-                <label for="nomes" class="form-label">Digite os nomes: </label>
+                <label for="nomes" class="form-label">Digite os títulos: </label>
                 <?php for ($i=1; $i <= 5; $i++): ?>
                   <input type="text" class="form-control mb-2" name="nomes[]" id="nomes" placeholder="Nome <?= $i ?>">
                 <?php endfor; ?>
             </div>
             <div class="col-3">
-                <label for="precos" class="form-label">Digite os preços: </label>
+                <label for="quantidades" class="form-label">Digite as quantidades: </label>
                 <?php for ($i=1; $i <= 5; $i++): ?>
-                  <input type="number" class="form-control mb-2" name="precos[]" id="precos" step="0.1" placeholder="Preço <?= $i ?>">
+                  <input type="number" class="form-control mb-2" name="quantidades[]" id="quantidades" placeholder="Quantidade <?= $i ?>">
                 <?php endfor; ?>
             </div>
         </div>
@@ -34,14 +34,15 @@
       if ($_SERVER["REQUEST_METHOD"] == 'POST') {
         try {
           $nomes = $_POST['nomes'];
-          $precos = $_POST['precos'];
+          $quantidades = $_POST['quantidades'];
           for ($i=0; $i < 5; $i++) {
-            $produtos[$nomes[$i]] = ($precos[$i] * 1.15);
+            $livros[$nomes[$i]] = $quantidades[$i];
+            if ($quantidades[$i] < 5)
+              echo "<p>O livro $nomes[$i] tem apenas $quantidades[$i] unidade/s!</p>";
           }
-          asort($produtos);
-          echo "<p>Resposta: </p>";
-          foreach ($produtos as $chave => $valor) {
-            echo "<p>$chave - R$" . number_format($valor, 2) . "</p>";
+          ksort($livros);
+          foreach ($livros as $chave => $valor) {
+            echo "<p>$chave - $valor</p>";
           }
         } catch (Exception $e) {
                 echo "Erro! ".$e->getMessage();
