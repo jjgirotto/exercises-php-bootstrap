@@ -4,7 +4,7 @@
 ?>
 
 <div class="container mt-5">
-    <h2>Gerenciamento de Produtos</h2>
+    <h2>Gerenciamento de Jogadores</h2>
     <a href="novo_produto.php" class="btn btn-success mb-3">Novo Produto</a>
     <table class="table table-hover table-striped">
         <thead>
@@ -12,7 +12,7 @@
                 <th>ID</th>
                 <th>Nome</th>
                 <th>Descrição</th>
-                <th>Preço</th>
+                <th>Número da camisa</th>
                 <th>Estoque Mínimo</th>
                 <th>Categoria</th>
                 <th>Ações</th>

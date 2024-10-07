@@ -11,7 +11,7 @@
             <label for="senha" class="form-label">Senha</label>
             <input type="password" name="senha" class="form-control" id="senha" required>
         </div>
-        <button type="submit" class="btn btn-primary">Entrar</button>
+        <button type="submit" class="btn btn-success">Entrar</button>
     </form>
 </div>
 

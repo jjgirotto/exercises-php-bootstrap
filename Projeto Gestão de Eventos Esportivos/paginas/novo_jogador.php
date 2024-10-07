@@ -4,7 +4,7 @@
 ?>
 
 <div class="container mt-5">
-    <h2>Criar Novo Produto</h2>
+    <h2>Criar Novo Jogador</h2>
 
     <form method="post">
         <div class="mb-3">
@@ -16,8 +16,8 @@
             <textarea name="descricao" id="descricao" class="form-control" required></textarea>
         </div>
         <div class="mb-3">
-            <label for="preco" class="form-label">Preço</label>
-            <input type="number" name="preco" id="preco" class="form-control" step="0.01" required>
+            <label for="numero" class="form-label">Número da camisa</label>
+            <input type="number" name="numero" id="numero" class="form-control" required>
         </div>
         <div class="mb-3">
             <label for="estoque_minimo" class="form-label">Estoque Mínimo</label>

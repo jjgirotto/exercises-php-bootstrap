@@ -4,7 +4,7 @@
 ?>
 
 <div class="container mt-5">
-    <h2>Editar Produto</h2>
+    <h2>Editar Jogadores</h2>
 
     <form method="post">
         <div class="mb-3">
@@ -16,8 +16,8 @@
             <textarea name="descricao" id="descricao" class="form-control" required></textarea>
         </div>
         <div class="mb-3">
-            <label for="preco" class="form-label">Preço</label>
-            <input type="number" name="preco" id="preco" class="form-control" step="0.01" value="" required>
+            <label for="numero" class="form-label">Número da camisa</label>
+            <input type="number" name="numero" id="numero" class="form-control" value="" required>
         </div>
         <div class="mb-3">
             <label for="estoque_minimo" class="form-label">Estoque Mínimo</label>
@@ -29,7 +29,7 @@
                     <option value="1">Categoria 1</option>
             </select>
         </div>
-        <button type="submit" class="btn btn-primary">Atualizar Produto</button>
+        <button type="submit" class="btn btn-primary">Atualizar Jogador</button>
     </form>
 </div>
 

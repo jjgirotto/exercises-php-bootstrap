@@ -6,7 +6,7 @@
 <div class="container mt-5">
     <h2>Excluir Categoria</h2>
     
-    <p>Tem certeza de que deseja excluir a categoria abaixo?</p>
+    <p>Tem certeza de que deseja excluir a equipe abaixo?</p>
     <ul>
         <li><strong>Nome:</strong> </li>
     </ul>
