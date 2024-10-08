@@ -1,3 +1,10 @@
+<?php
+  session_start();
+  if (!isset($_SESSION['acesso'])) {
+      header('Location: login.php');
+  }
+?>
+
 <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
   <div class="container-fluid">
     <a class="navbar-brand" href="/dashboard">Sistema de Compras de Produtos</a>
@@ -53,7 +60,6 @@
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     Seja bem vindo(a)
                     <?php
-                      session_start();
                       if (isset($_SESSION['usuario'])) {
                         echo $_SESSION['usuario'];
                       }
