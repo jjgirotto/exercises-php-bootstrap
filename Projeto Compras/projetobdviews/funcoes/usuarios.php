@@ -30,4 +30,37 @@ function login(string $email, string $senha) {
     else
         return null;
 }
+
+
+//função para salvar um novo usuário
+function novoUsuario(string $nome, string $email, string $senha, string $nivel):bool {
+    global $pdo;
+    $senha_criptografada = password_hash($senha, PASSWORD_BCRYPT);
+    $statement = $pdo->prepare("INSERT INTO usuario (nome, email, senha, nivel) VALUES (?, ?, ?, ?)");
+    return $statement->execute([$nome, $email, $senha_criptografada, $nivel]);
+}
+
+
+function excluirUsuario(int $id):bool{
+    global $pdo;
+    $statement = $pdo->prepare("DELETE FROM usuario WHERE id = ?");
+    return $statement->execute([$id]);
+}
+
+function todosUsuarios():array{
+    global $pdo;
+    //se não passo parâmetros, ou seja, o ?, usar query e não prepare
+    $statement = $pdo->query("SELECT * FROM usuario WHERE nivel <> 'adm'");
+    //associa e retorna todos os usuários
+    //para query usar fetchall, para prepare usar fetch
+    return $statement->fetchAll(PDO::FETCH_ASSOC);
+}
+
+function usuarioPorId(int $id):?array{
+    global $pdo;
+    $statement = $pdo->prepare("SELECT * FROM usuario WHERE id = ? AND nivel <> 'adm'");
+    $statement->execute([$id]);
+    $usuario = $statement->fetch(PDO::FETCH_ASSOC);
+    return $usuario ? $usuario : null;
+}
 ?>
