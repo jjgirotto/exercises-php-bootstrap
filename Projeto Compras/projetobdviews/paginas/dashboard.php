@@ -1,6 +1,9 @@
 <?php
     require_once 'cabecalho.php'; 
     require_once 'navbar.php';
+    require_once '../funcoes/produtos.php';
+
+    $dados = gerarDadosGrafico();
 ?>
 
 <main class="container">
@@ -21,19 +24,19 @@
         function drawChart() {
             // Array de dados que será usado no gráfico
             var data = google.visualization.arrayToDataTable([
-                ['Produto', 'Estoque Comprado'],
-                ['Tênis', 10],
-                ['Camiseta', 30],
-                ['Short', 25],
-                ['Meia', 5],
+                ['Produto', 'Estoque Comprado', {role: 'style'}],
+                <?php foreach($dados as $d): ?>
+                    ['<?= $d['nome'] ?>', <?= $d['estoque'] ?>, '#98FB98'],
+                <?php endforeach; ?>
             ]);
 
             // Opções de customização do gráfico
             var options = {
                 title: 'Estoque de Produtos Comprados',
-                hAxis: {title: 'Produtos',  titleTextStyle: {color: '#333'}},
+                hAxis: {title: 'Produtos',  titleTextStyle: {color: '#000'}},
                 vAxis: {minValue: 0},
-                chartArea: {width: '70%', height: '70%'}
+                chartArea: {width: '70%', height: '70%'},
+                colors: ['#98FB98']
             };
 
             // Renderizar o gráfico na div com id 'chart_div'
