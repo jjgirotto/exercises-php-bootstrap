@@ -84,7 +84,7 @@ ENGINE = InnoDB;
 -- Table `gestao_esportiva`.`partida`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `gestao_esportiva`.`partida` (
-  `id_partida` INT NOT NULL,
+  `id_partida` INT NOT NULL AUTO_INCREMENT,
   `id_competicao` INT NOT NULL,
   `resultado` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id_partida`),

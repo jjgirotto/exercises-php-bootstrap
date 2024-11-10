@@ -3,6 +3,7 @@
     require_once 'navbar.php';
     require_once '../funcoes/competicao.php';
     require_once '../funcoes/equipe.php';
+    require_once '../funcoes/partida.php';
 
     $id = $_GET['id'];
     if (!$id) {
@@ -17,6 +18,7 @@
     }
 
     $equipes = buscarEquipes();
+    $partidas = buscarPartidasPorCompeticao($id);
 
     $erro = "";
 
@@ -28,6 +30,10 @@
                 exit();
             }
             else {
+                foreach ($partidas as $p) {
+                    excluirPartidaDaEquipe($p['id_partida']);
+                    excluirPartida($p['id_partida']);
+                }
                 $competicoes = buscarCompeticoesdaEquipePorIdCompeticao($id);
                 foreach ($competicoes as $competicao) {
                     excluirCompeticaoDaEquipe($competicao['id_competicao']);

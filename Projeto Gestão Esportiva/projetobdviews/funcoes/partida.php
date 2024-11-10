@@ -4,7 +4,8 @@
 
     function buscarPartidas(): array {
         global $pdo;
-        $stmt = $pdo->query("SELECT * FROM partida");
+        $stmt = $pdo->query("SELECT p.*, c.nome as nome_competicao FROM partida p LEFT JOIN competicao c
+                                ON c.id_competicao = p.id_competicao");
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
@@ -16,10 +17,26 @@
         return $partida ? $partida : null;
     }
 
-    function criarPartida(int $idCompeticao, string $resultado): bool {
+    function buscarPartidasPorCompeticao($idCompeticao): array {
+        global $pdo;
+        $stmt = $pdo->prepare("SELECT * FROM partida WHERE id_competicao = ?");
+        $stmt->execute([$idCompeticao]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    
+
+    function buscarPartidasdaCompeticaoPorIdPartida(int $id): array {
+        global $pdo;
+        $stmt = $pdo->prepare("SELECT * FROM equipe_da_partida WHERE id_partida = ?");
+        $stmt->execute([$id]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    function criarPartida(int $idCompeticao, string $resultado): int {
         global $pdo;
         $stmt = $pdo->prepare("INSERT INTO partida (id_competicao, resultado) VALUES (?, ?)");
-        return $stmt->execute([$idCompeticao, $resultado]);
+        if ($stmt->execute([$idCompeticao, $resultado])) return (int)$pdo->lastInsertId();
+        return 0;
     }
 
     function criarEquipeDaPartida(int $idEquipe, int $idPartida, int $pontuacao): bool {
@@ -35,15 +52,21 @@
         return $stmt->execute([$idCompeticao, $resultado, $id]);
     }
 
-    function alterarEquipeDapartida(int $idEquipe, int $pontuacao):bool {
+    function alterarEquipeDaPartida(int $idEquipe, int $pontuacao):bool {
         global $pdo;
         $stmt = $pdo->prepare("UPDATE equipe_da_partida SET pontuacao = ? WHERE id_equipe = ?");
         return $stmt->execute([$pontuacao, $idEquipe]);
     }
 
-    function excluirpartida(int $id):bool {
+    function excluirPartida(int $id):bool {
         global $pdo;
         $stmt = $pdo->prepare("DELETE FROM partida WHERE id_partida = ?");
+        return $stmt->execute([$id]);
+    }
+
+    function excluirPartidaDaEquipe(int $id):bool {
+        global $pdo;
+        $stmt = $pdo->prepare("DELETE FROM equipe_da_partida WHERE id_partida= ?");
         return $stmt->execute([$id]);
     }
 
