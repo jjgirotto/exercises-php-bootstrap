@@ -7,7 +7,7 @@
 
 <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
   <div class="container-fluid">
-    <a class="navbar-brand" href="/dashboard">Sistema de Compras de Produtos</a>
+    <a class="navbar-brand" href="/dashboard">Sistema de Gestão Esportiva</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -34,29 +34,39 @@
 
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Categorias
+            Equipes
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="categorias.php">Gerenciar</a></li>
+            <li><a class="dropdown-item" href="equipes.php">Gerenciar</a></li>
           </ul>
         </li>
 
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Produtos
+            Jogadores
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="produtos.php">Gerenciar</a></li>
+            <li><a class="dropdown-item" href="jogadores.php">Gerenciar</a></li>
           </ul>
         </li>
 
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Compras
+            Competições
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="compras.php">Gerenciar</a></li>
-            <li><a class="dropdown-item" href="relatorio_compras.php">Relatórios</a></li>
+            <li><a class="dropdown-item" href="competicoes.php">Gerenciar</a></li>
+            <li><a class="dropdown-item" href="equipe_competicao.php">Equipes</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Partidas
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="partidas.php">Gerenciar</a></li>
+            <li><a class="dropdown-item" href="relatorio_partidas.php">Relatórios</a></li>
           </ul>
         </li>
       </ul>

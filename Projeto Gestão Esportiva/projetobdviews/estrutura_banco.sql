@@ -33,15 +33,15 @@ CREATE TABLE IF NOT EXISTS `gestao_esportiva`.`jogador` (
   `id_jogador` INT NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(100) NOT NULL,
   `numero_camisa` INT NOT NULL,
-  `id_equipe` INT NOT NULL,
+  `id_equipe` INT NULL,
   PRIMARY KEY (`id_jogador`),
   INDEX `fk_jogador_equipe_idx` (`id_equipe` ASC) VISIBLE,
   CONSTRAINT `fk_jogador_equipe`
     FOREIGN KEY (`id_equipe`)
     REFERENCES `gestao_esportiva`.`equipe` (`id_equipe`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+    ON DELETE SET NULL
+    ON UPDATE NO ACTION
+) ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------

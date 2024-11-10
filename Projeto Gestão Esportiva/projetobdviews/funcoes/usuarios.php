@@ -17,7 +17,6 @@ function login(string $email, string $senha) {
 
     //verifica email e senhado usuário
     $statement = $pdo->prepare("SELECT * FROM usuario WHERE email=?");
-    //validar os valores com regex, se é email
     $statement->execute([$email]);
     $usuario = $statement->fetch(PDO::FETCH_ASSOC);
     if ($usuario && password_verify($senha, $usuario['senha']))
@@ -44,10 +43,7 @@ function excluirUsuario(int $id):bool{
 
 function todosUsuarios():array{
     global $pdo;
-    //se não passo parâmetros, ou seja, o ?, usar query e não prepare
     $statement = $pdo->query("SELECT * FROM usuario WHERE nivel <> 'adm'");
-    //associa e retorna todos os usuários
-    //para query usar fetchall, para prepare usar fetch
     return $statement->fetchAll(PDO::FETCH_ASSOC);
 }
 
