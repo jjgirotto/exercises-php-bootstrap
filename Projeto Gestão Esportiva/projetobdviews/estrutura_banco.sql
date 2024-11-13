@@ -87,6 +87,7 @@ CREATE TABLE IF NOT EXISTS `gestao_esportiva`.`partida` (
   `id_partida` INT NOT NULL AUTO_INCREMENT,
   `id_competicao` INT NOT NULL,
   `resultado` VARCHAR(45) NOT NULL,
+  `sumula` VARCHAR(1000) NOT NULL,
   PRIMARY KEY (`id_partida`),
   INDEX `fk_partida_competicao1_idx` (`id_competicao` ASC) VISIBLE,
   CONSTRAINT `fk_partida_competicao1`

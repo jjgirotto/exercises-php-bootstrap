@@ -23,7 +23,7 @@
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         try {
             $colocacao = intval($_POST['colocacao']);
-            if (alterarEquipeDaCompeticao($idEquipe, $colocacao)) {
+            if (alterarColocacaoEquipeDaCompeticao($idEquipe, $idCompeticao, $colocacao)) {
                 header('Location: equipe_competicao.php?id_competicao=$idCompeticao');
                 exit();
             } else {

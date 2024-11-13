@@ -52,8 +52,7 @@
         $stmt = $pdo->prepare("INSERT INTO competicao (nome, tipo, premio) VALUES (?, ?, ?)");
         if ($stmt->execute([$nome, $tipo, $premio])) return (int)$pdo->lastInsertId();
         return 0;
-    }
-    
+    }   
 
     function criarEquipeDaCompeticao(int $idEquipe, int $idCompeticao, int $colocacao): bool {
         global $pdo;
@@ -68,11 +67,24 @@
         return $stmt->execute([$nome, $tipo, $premio, $id]);
     }
 
-    function alterarEquipeDaCompeticao(int $id, int $colocacao):bool {
+    function alterarColocacaoEquipeDaCompeticao(int $idEquipe, int $idCompeticao, int $colocacao):bool {
         global $pdo;
-        $stmt = $pdo->prepare("UPDATE equipe_da_competicao SET colocacao = ? WHERE id_equipe = ?");
-        return $stmt->execute([$colocacao, $id]);
+        $stmt = $pdo->prepare("UPDATE equipe_da_competicao SET colocacao = ? WHERE id_equipe = ? AND id_competicao = ?");
+        return $stmt->execute([$colocacao, $idEquipe, $idCompeticao]);
     }
+
+    function alterarEquipeDaCompeticao(int $idCompeticao, int $idEquipe): bool {
+        global $pdo;
+        $stmt = $pdo->prepare("SELECT COUNT(*) FROM equipe_da_competicao WHERE id_equipe = ? AND id_competicao = ?");
+        $stmt->execute([$idEquipe, $idCompeticao]);
+        $count = $stmt->fetchColumn();
+        if ($count == 0) {
+            $stmt = $pdo->prepare("INSERT INTO equipe_da_competicao (id_equipe, id_competicao) VALUES (?, ?)");
+            return $stmt->execute([$idEquipe, $idCompeticao]);
+        }   
+        return true;
+    }
+    
 
     function excluirCompeticao(int $id):bool {
         global $pdo;

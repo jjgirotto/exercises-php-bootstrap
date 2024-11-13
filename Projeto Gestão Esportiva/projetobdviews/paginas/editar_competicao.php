@@ -2,6 +2,9 @@
     require_once 'cabecalho.php'; 
     require_once 'navbar.php';
     require_once '../funcoes/competicao.php';
+    require_once '../funcoes/equipe.php';
+
+    $equipes = buscarEquipes();
 
     $id = $_GET['id'];
     if (!$id) {
@@ -21,14 +24,20 @@
             $nome = $_POST['nome'];
             $tipo = $_POST['tipo'];
             $premio = floatval($_POST['premio']);
+            $equipes = $_POST['equipes'] ?? [];
             $id = intval($_POST['id']);
             if (empty($nome)) $erro = "Preencha os campos obrigatórios!";
             else {
-                if (alterarCompeticao($id, $nome, $tipo, $premio)) {
+                if ($id != 0) {
+                    foreach ($equipes as $idEquipe) {
+                        $idEquipe = intval($idEquipe);
+                        alterarCompeticao($id, $nome, $tipo, $premio);
+                        alterarEquipeDaCompeticao($id, $idEquipe);
+                    }
                     header('Location: competicoes.php');
                     exit();
                 } else {
-                    $erro = "Erro ao alterar competição!";
+                    $erro = "Erro ao inserir competição!";
                 }
             }
         } catch (Exception $e) {
@@ -57,6 +66,17 @@
         <div class="mb-3">
             <label for="premio" class="form-label">Prêmio</label>
             <input type="number" name="premio" value="<?= $competicao['premio'] ?>" id="premio" step="0.01" class="form-control" value="" required>
+        </div>
+        <div class="mb-3">
+            <label for="id_equipe" class="form-label">Equipes</label>
+            <?php foreach($equipes as $e): ?>
+                <div class="form-check">
+                    <input class="form-check-input" required type="checkbox" name="equipes[]" value="<?= $e['id_equipe'] ?>" id="equipe_<?= $e['id_equipe'] ?>">
+                    <label class="form-check-label" for="equipe_<?= $e['id_equipe'] ?>">
+                        <?= $e['nome'] ?>
+                    </label>
+                </div>
+            <?php endforeach; ?>
         </div>
         <button type="submit" class="btn btn-primary">Atualizar Competição</button>
     </form>

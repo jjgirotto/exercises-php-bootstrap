@@ -13,13 +13,14 @@
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         try {
             $resultado = $_POST['resultado'];
+            $sumula = $_POST['sumula'];
             $id_competicao = intval($_POST['id_competicao']);
             $equipes = $_POST['equipes'] ?? [];
             $pontuacoes = $_POST['pontuacao'] ?? [];
             if (empty($resultado)) {
                 $erro = "Informe os valores obrigatórios!";
             } else {
-                $idPartida = criarPartida($id_competicao, $resultado);
+                $idPartida = criarPartida($id_competicao, $resultado, $sumula);
                 if ($idPartida != 0) {
                     foreach ($equipes as $key => $idEquipe) {
                         $idEquipe = intval($idEquipe);
@@ -51,6 +52,10 @@
             <input type="text" name="resultado" id="resultado" class="form-control" required>
         </div>
         <div class="mb-3">
+            <label for="sumula" class="form-label">Súmula</label>
+            <textarea name="sumula" id="sumula" class="form-control" required></textarea>
+        </div>
+        <div class="mb-3">
             <label for="id_competicao" class="form-label">Competição</label>
             <select name="id_competicao" id="id_competicao" class="form-select" required>
                 <?php foreach($competicoes as $c): ?>
@@ -62,11 +67,11 @@
             <label for="id_equipe" class="form-label">Equipes</label>
             <?php foreach($equipes as $key => $e): ?>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" required name="equipes[]" value="<?= $e['id_equipe'] ?>" id="equipe_<?= $e['id_equipe'] ?>">
+                    <input class="form-check-input" type="checkbox" name="equipes[]" value="<?= $e['id_equipe'] ?>" id="equipe_<?= $e['id_equipe'] ?>">
                     <label class="form-check-label" for="equipe_<?= $e['id_equipe'] ?>">
                         <?= $e['nome'] ?>
                     </label>
-                    <input type="number" name="pontuacao[<?= $key ?>]" required class="form-control mt-2" placeholder="Pontuação" min="0">
+                    <input type="number" name="pontuacao[<?= $key ?>]" class="form-control mt-2" placeholder="Pontuação" min="0">
                 </div>
             <?php endforeach; ?>
         </div>

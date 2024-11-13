@@ -2,6 +2,8 @@
     require_once 'cabecalho.php'; 
     require_once 'navbar.php';
     require_once '../funcoes/equipe.php';
+    require_once '../funcoes/competicao.php';
+    require_once '../funcoes/partida.php';
 
     $id = $_GET['id'];
     if (!$id) {
@@ -21,10 +23,12 @@
         try {
             $id = intval($_POST['id']);
             if (empty($id)) {
-                header('Location: produtos.php');
+                header('Location: equipes.php');
                 exit();
             }
             else {
+                excluirEquipeDaCompeticao($id);
+                excluirEquipeDaPartida($id);
                 if (excluirEquipe($id)) {
                     header('Location: equipes.php');
                     exit();

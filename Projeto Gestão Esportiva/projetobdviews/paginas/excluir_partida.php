@@ -33,7 +33,7 @@
                 exit();
             }
             else {
-                $partidas = buscarPartidasdaCompeticaoPorIdPartida($id);
+                $partidas = buscarEquipesDaPartidaPorId($id);
                 foreach ($partidas as $p) {
                     excluirPartidaDaEquipe($p['id_partida']);
                 }

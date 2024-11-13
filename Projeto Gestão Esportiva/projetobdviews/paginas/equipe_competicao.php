@@ -15,11 +15,11 @@
     }
 ?>
 <div class="container mt-5">
-    <h3 class="mb-4">Selecione uma Competição</h3>
+    <h3 class="mb-4">Selecione uma competição</h3>
     <form method="get">
         <div class="mb-3">
             <select name="id_competicao" id="id_competicao" class="form-control" onchange="this.form.submit()">
-                <option value="">-- Selecione --</option>
+                <option value="">Selecione a competição</option>
                 <?php foreach ($competicoes as $competicao): ?>
                     <option value="<?= $competicao['id_competicao']; ?>" 
                         <?= isset($competicaoSelecionada) && $competicao['id_competicao'] == $competicaoSelecionada['id_competicao'] ? 'selected' : ''; ?>>

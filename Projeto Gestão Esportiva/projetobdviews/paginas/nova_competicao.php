@@ -58,7 +58,7 @@
             <label for="id_equipe" class="form-label">Equipes</label>
             <?php foreach($equipes as $e): ?>
                 <div class="form-check">
-                    <input class="form-check-input" required type="checkbox" name="equipes[]" value="<?= $e['id_equipe'] ?>" id="equipe_<?= $e['id_equipe'] ?>">
+                    <input class="form-check-input" type="checkbox" name="equipes[]" value="<?= $e['id_equipe'] ?>" id="equipe_<?= $e['id_equipe'] ?>">
                     <label class="form-check-label" for="equipe_<?= $e['id_equipe'] ?>">
                         <?= $e['nome'] ?>
                     </label>
