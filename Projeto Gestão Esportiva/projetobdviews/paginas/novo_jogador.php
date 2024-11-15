@@ -11,7 +11,7 @@
         try {
             $nome = $_POST['nome'];
             $numero_camisa = intval($_POST['numero_camisa']);
-            $id_equipe = intval($_POST['id_equipe']);
+            $id_equipe = !empty($_POST['id_equipe']) ? intval($_POST['id_equipe']) : null;
             if (empty($nome) || empty($numero_camisa)) {
                 $erro = "Informe os valores obrigatórios!";
             } else {
@@ -46,7 +46,8 @@
         </div>
         <div class="mb-3">
             <label for="id_equipe" class="form-label">Equipe</label>
-            <select name="id_equipe" id="id_equipe" class="form-select" required>
+            <select name="id_equipe" id="id_equipe" class="form-select">
+            <option value="">Sem equipe</option>
                 <?php foreach($equipes as $e): ?>
                     <option value="<?= $e['id_equipe'] ?>"><?= $e['nome'] ?></option>
                 <?php endforeach; ?>

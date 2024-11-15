@@ -38,10 +38,9 @@
     function buscarEquipeDaCompeticao(int $idEquipe, int $idCompeticao): array {
         global $pdo;
         $stmt = $pdo->prepare("
-            SELECT equipe_da_competicao.colocacao, equipe.nome 
-            FROM equipe_da_competicao
-            JOIN equipe ON equipe_da_competicao.id_equipe = equipe.id_equipe
-            WHERE equipe_da_competicao.id_equipe = ? AND equipe_da_competicao.id_competicao = ?
+            SELECT * FROM equipe_da_competicao e
+            JOIN equipe ON e.id_equipe = equipe.id_equipe
+            WHERE e.id_equipe = ? AND e.id_competicao = ?
         ");
         $stmt->execute([$idEquipe, $idCompeticao]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
@@ -71,20 +70,7 @@
         global $pdo;
         $stmt = $pdo->prepare("UPDATE equipe_da_competicao SET colocacao = ? WHERE id_equipe = ? AND id_competicao = ?");
         return $stmt->execute([$colocacao, $idEquipe, $idCompeticao]);
-    }
-
-    function alterarEquipeDaCompeticao(int $idCompeticao, int $idEquipe): bool {
-        global $pdo;
-        $stmt = $pdo->prepare("SELECT COUNT(*) FROM equipe_da_competicao WHERE id_equipe = ? AND id_competicao = ?");
-        $stmt->execute([$idEquipe, $idCompeticao]);
-        $count = $stmt->fetchColumn();
-        if ($count == 0) {
-            $stmt = $pdo->prepare("INSERT INTO equipe_da_competicao (id_equipe, id_competicao) VALUES (?, ?)");
-            return $stmt->execute([$idEquipe, $idCompeticao]);
-        }   
-        return true;
-    }
-    
+    }    
 
     function excluirCompeticao(int $id):bool {
         global $pdo;

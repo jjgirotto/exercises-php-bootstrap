@@ -104,7 +104,7 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `gestao_esportiva`.`equipe_da_partida` (
   `id_equipe` INT NOT NULL,
   `id_partida` INT NOT NULL,
-  `pontuacao` INT NOT NULL,
+  `pontuacao` INT NULL,
   PRIMARY KEY (`id_equipe`, `id_partida`),
   INDEX `fk_equipe_has_partida_partida1_idx` (`id_partida` ASC) VISIBLE,
   INDEX `fk_equipe_has_partida_equipe1_idx` (`id_equipe` ASC) VISIBLE,

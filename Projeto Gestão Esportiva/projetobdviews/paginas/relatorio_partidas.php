@@ -34,7 +34,7 @@
     </form>
 
     <?php if ($partidaSelecionada): ?>
-        <h4>Relatório da Partida: <?= $p['resultado']; ?></h4>
+        <h4>Relatório da Partida: <?= $partidaSelecionada['resultado']; ?></h4>
         <table class="table table-hover table-striped">
             <thead>
                 <tr>
@@ -59,12 +59,10 @@
                     <th>Relatório</th>
                 </tr>
             </thead>
-            <tbody>
-                <?php foreach ($partidas as $p): ?>
+            <tbody>             
                     <tr>
-                        <td><?= $p['sumula']; ?></td>
-                    </tr>
-                <?php endforeach; ?>
+                        <td><?= $partidaSelecionada['sumula']; ?></td>
+                    </tr>              
             </tbody>
         </table>
     <?php endif; ?>

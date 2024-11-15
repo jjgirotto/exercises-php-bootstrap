@@ -6,7 +6,8 @@
         global $pdo;
         $stmt = $pdo->query("
             SELECT e.nome AS equipe, c.nome AS competicao, COUNT(p.id_partida) AS total_partidas
-            FROM equipe AS e INNER JOIN equipe_da_competicao AS edc ON e.id_equipe = edc.id_equipe
+            FROM equipe AS e
+            INNER JOIN equipe_da_competicao AS edc ON e.id_equipe = edc.id_equipe
             INNER JOIN competicao AS c ON edc.id_competicao = c.id_competicao
             LEFT JOIN equipe_da_partida AS edp ON e.id_equipe = edp.id_equipe
             LEFT JOIN partida AS p ON edp.id_partida = p.id_partida AND p.id_competicao = c.id_competicao

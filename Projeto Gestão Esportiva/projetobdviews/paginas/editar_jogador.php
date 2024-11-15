@@ -22,7 +22,7 @@
         try {
             $nome = $_POST['nome'];
             $numero_camisa = intval($_POST['numero_camisa']);
-            $id_equipe = intval($_POST['id_equipe']);
+            $id_equipe = !empty($_POST['id_equipe']) ? intval($_POST['id_equipe']) : null;
             $id = intval($_POST['id']);
             if (empty($nome)) $erro = "Preencha os campos obrigatórios!";
             else {
@@ -56,7 +56,8 @@
         </div>
         <div class="mb-3">
             <label for="id_equipe" class="form-label">Equipe</label>
-            <select name="id_equipe" id="id_equipe" class="form-control" required>
+            <select name="id_equipe" id="id_equipe" class="form-control">
+                <option value="">Sem equipe</option>
                 <?php foreach($equipes as $e):?>
                     <option value="<?= $e['id_equipe'] ?>"
                         <?= $e['id_equipe'] == $jogador['id_equipe'] ? 'selected' : '' ?> >

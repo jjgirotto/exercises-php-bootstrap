@@ -28,12 +28,6 @@
         return $stmt->execute([$nome, $tecnico, $id]);
     }
 
-    // function excluirEquipe(int $id):bool {
-    //     global $pdo;
-    //     $stmt = $pdo->prepare("DELETE FROM equipe WHERE id_equipe = ?");
-    //     return $stmt->execute([$id]);
-    // }
-
     function excluirEquipe(int $id): bool {
         global $pdo;   
         try {    

@@ -22,9 +22,9 @@
             } else {
                 $idPartida = criarPartida($id_competicao, $resultado, $sumula);
                 if ($idPartida != 0) {
-                    foreach ($equipes as $key => $idEquipe) {
+                    foreach ($equipes as $idEquipe) {
                         $idEquipe = intval($idEquipe);
-                        $pontuacao = isset($pontuacoes[$key]) ? intval($pontuacoes[$key]) : 0;
+                        $pontuacao = isset($pontuacoes[$idEquipe]) ? intval($pontuacoes[$idEquipe]) : 0;
                         criarEquipeDaPartida($idEquipe, $idPartida, $pontuacao);
                     }
                     header('Location: partidas.php');
@@ -71,7 +71,7 @@
                     <label class="form-check-label" for="equipe_<?= $e['id_equipe'] ?>">
                         <?= $e['nome'] ?>
                     </label>
-                    <input type="number" name="pontuacao[<?= $key ?>]" class="form-control mt-2" placeholder="Pontuação" min="0">
+                    <input type="number" name="pontuacao[<?= $e['id_equipe'] ?>]" class="form-control mt-2" placeholder="Pontuação" min="0">
                 </div>
             <?php endforeach; ?>
         </div>

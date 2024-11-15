@@ -24,15 +24,23 @@
             $nome = $_POST['nome'];
             $tipo = $_POST['tipo'];
             $premio = floatval($_POST['premio']);
-            $equipes = $_POST['equipes'] ?? [];
+            $equipesSelecionadas = $_POST['equipes'] ?? [];
             $id = intval($_POST['id']);
             if (empty($nome)) $erro = "Preencha os campos obrigatórios!";
             else {
                 if ($id != 0) {
-                    foreach ($equipes as $idEquipe) {
+                    alterarCompeticao($id, $nome, $tipo, $premio);                  
+                    $equipesAtuais = array_column(buscarCompeticoesdaEquipePorIdCompeticao($id), 'id_equipe');
+                    foreach ($equipesSelecionadas as $idEquipe) {
                         $idEquipe = intval($idEquipe);
-                        alterarCompeticao($id, $nome, $tipo, $premio);
-                        alterarEquipeDaCompeticao($id, $idEquipe);
+                        if (!in_array($idEquipe, $equipesAtuais)) {
+                            criarEquipeDaCompeticao($idEquipe, $id, 0);
+                        }
+                    }                    
+                    foreach ($equipesAtuais as $idEquipeAtual) {
+                        if (!in_array($idEquipeAtual, $equipesSelecionadas)) {
+                            excluirEquipeDaCompeticao($idEquipeAtual);
+                        }
                     }
                     header('Location: competicoes.php');
                     exit();
@@ -71,7 +79,7 @@
             <label for="id_equipe" class="form-label">Equipes</label>
             <?php foreach($equipes as $e): ?>
                 <div class="form-check">
-                    <input class="form-check-input" required type="checkbox" name="equipes[]" value="<?= $e['id_equipe'] ?>" id="equipe_<?= $e['id_equipe'] ?>">
+                    <input class="form-check-input" type="checkbox" name="equipes[]" value="<?= $e['id_equipe'] ?>" id="equipe_<?= $e['id_equipe'] ?>">
                     <label class="form-check-label" for="equipe_<?= $e['id_equipe'] ?>">
                         <?= $e['nome'] ?>
                     </label>
