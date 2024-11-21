@@ -6,6 +6,8 @@
 * Lista 4 - 7 exercícios englobando funções próprias da linguagem PHP e criação de funções personalizadas (enunciados no README.md na pasta Lista4).
 * Lista 5 - 5 exercícios sobre mapas ordenados (listas/arrays).
 
+* Projeto Compras: projeto realizado parcialmente pela professora a fim de servir como modelo para um projeto próprio. Meu projeto de gestão esportiva baseado neste modelo encontra-se no repositório `gestao-esportiva-php`.
+
 Você pode verificar a documentação do [Bootstrap](https://getbootstrap.com/).
 
 
